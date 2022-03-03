@@ -54,3 +54,23 @@ tr .max {
   background-color: rgba(31, 127, 119, 0.329);
   outline: 0;
 }
+
+.widget {
+  margin-top: 20px;
+}
+
+#from {
+  margin-right: 20px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+#submit {
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  background: #4b4848;
+  color: #fff;
+}

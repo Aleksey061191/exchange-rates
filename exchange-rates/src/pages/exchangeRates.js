@@ -1,4 +1,6 @@
+import { listenSearch } from "../components/search";
 import { table } from "../components/table";
+import { listenWidget, widget } from "../components/widget";
 
 export function renderExchangeRates() {
   const body = `
@@ -6,17 +8,12 @@ export function renderExchangeRates() {
       <h1>Курсы валют</h1>
       <input type="search" class="search" autocomplete="off" placeholder='Поиск'/>
       ${table()}
+      ${widget()}
     </div>
     `;
   const page = document.createElement("div");
   page.innerHTML = body;
   document.body.append(page);
-  const searchInput = document.querySelector(".search");
-  searchInput.addEventListener("input", () => {
-    const value = searchInput?.value.toLowerCase();
-    const tb = document.querySelector(".table");
-    tb.innerHTML = '';
-    const el = `${table(value)}`;
-    tb.innerHTML = el;
-  });
+  listenSearch();
+  listenWidget();
 }

@@ -1,6 +1,6 @@
 import { getExchangeDynamicsRate } from "../servis/servis";
 
-const getDate = (date) => {
+export const getDate = (date) => {
   const currentDate = date.toLocaleDateString("en-US");
   const changeDate = currentDate.split("/");
   const rez = `${changeDate[1]}/${changeDate[0]}/${changeDate[2]}`;
