@@ -1,3 +1,4 @@
+import { store } from "./getDate";
 import { table } from "./table";
 
 export const dataCur = ["USD", "EUR", "RUB"];
@@ -19,6 +20,6 @@ export function listenSearch() {
     const value = searchInput.value.toLowerCase();
     const tb = document.querySelector(".table");
     tb.innerHTML = '';
-    tb.innerHTML = `${table(value)}`;
+    tb.innerHTML = `${table(value, store)}`;
   });
 }

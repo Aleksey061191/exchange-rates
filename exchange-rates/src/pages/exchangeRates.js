@@ -1,3 +1,4 @@
+import { store } from "../components/getDate";
 import { listenSearch } from "../components/search";
 import { table } from "../components/table";
 import { listenWidget, widget } from "../components/widget";
@@ -7,7 +8,7 @@ export function renderExchangeRates() {
     <div>
       <h1>Курсы валют</h1>
       <input type="search" class="search" autocomplete="off" placeholder='Поиск'/>
-      ${table()}
+      ${table('', store)}
       ${widget()}
     </div>
     `;

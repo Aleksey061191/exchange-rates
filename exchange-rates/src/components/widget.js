@@ -1,4 +1,6 @@
-import { getDate } from "./getDate";
+import { getDate, store } from "./getDate";
+import { getDinamicRates } from "./getDinamicDate";
+import { table } from "./table";
 
 function parseToday(s) {
   const parts = s.split("/");
@@ -48,6 +50,23 @@ function changeWidget() {
 export function listenWidget() {
   const startInput = document.getElementById("from");
   const endInput = document.getElementById("to");
+  const submit = document.getElementById("submit");
   startInput.addEventListener("change", changeWidget);
   endInput.addEventListener("change", changeWidget);
+  submit.addEventListener("click", async (e) => {
+    e.preventDefault();
+    if (startInput.value !== "" && endInput.value !== "") {
+      const a = await getDinamicRates(startInput.value, endInput.value);
+      const tb = document.querySelector(".table");
+      tb.innerHTML = "";
+      tb.innerHTML = `${table("", a)}`;
+      const searchInput = document.querySelector(".search");
+      searchInput.addEventListener("input", () => {
+        const value = searchInput.value.toLowerCase();
+        const tb = document.querySelector(".table");
+        tb.innerHTML = "";
+        tb.innerHTML = `${table(value, a)}`;
+      });
+    }
+  });
 }
