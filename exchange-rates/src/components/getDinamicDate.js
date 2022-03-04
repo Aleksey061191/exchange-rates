@@ -13,7 +13,11 @@ function getArrayDinamicDate(start, end) {
   let month = +startDate[1];
   let day = +startDate[2];
   const arr = [];
-  while (year >= +endDate[0] && month >= +endDate[1] && day >= +endDate[2]) {
+  while (
+    (day >= +endDate[2] || (month > +endDate[1] && day <= +endDate[2]) || (year > +endDate[0] && month <= +endDate[1] && day <= +endDate[2])) &&
+    (month >= +endDate[1] || (year > +endDate[0] && month <= +endDate[1])) &&
+    year >= +endDate[0]
+  ) {
     if (day === 1) {
       arr.push(joinDate(year, month, day));
       if (month === 1) {
