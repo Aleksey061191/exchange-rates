@@ -1,6 +1,6 @@
 const baseUrl = "https://www.nbrb.by/api/exrates/rates";
 
-function parseDate(s) {
+export function parseDate(s) {
   const parts = s.split("/");
   return parts.reverse().join("-");
 }

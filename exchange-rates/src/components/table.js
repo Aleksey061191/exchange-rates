@@ -1,7 +1,6 @@
-import { store } from "./getDate";
 import { search } from "./search";
 
-export function table(value = "") {
+export function table(value = "", tabelStore) {
   const searchData = search(value);
   return `
   <table class="table">
@@ -14,7 +13,7 @@ export function table(value = "") {
           .join(" ")}
     </thead>
     <tbody>
-    ${store.date
+    ${tabelStore.date
       .map((data, index) => {
         return `
         <tr>
@@ -22,34 +21,34 @@ export function table(value = "") {
           ${
             searchData.includes("USD")
               ? `<td class="${
-                  store.usd[index] === store.minmMaxUsd.max
+                tabelStore.usd[index] === tabelStore.minmMaxUsd.max
                     ? "max"
-                    : store.usd[index] === store.minmMaxUsd.min
+                    : tabelStore.usd[index] === tabelStore.minmMaxUsd.min
                     ? "min"
                     : ""
-                }">${store.usd[index]}</td>`
+                }">${tabelStore.usd[index]}</td>`
               : ""
           }
           ${
             searchData.includes("EUR")
               ? `<td class="${
-                  store.eur[index] === store.minmMaxEur.max
+                tabelStore.eur[index] === tabelStore.minmMaxEur.max
                     ? "max"
-                    : store.eur[index] === store.minmMaxEur.min
+                    : tabelStore.eur[index] === tabelStore.minmMaxEur.min
                     ? "min"
                     : ""
-                }">${store.eur[index]}</td>`
+                }">${tabelStore.eur[index]}</td>`
               : ""
           }
           ${
             searchData.includes("RUB")
               ? `<td class="${
-                  store.rub[index] === store.minmMaxRub.max
+                tabelStore.rub[index] === tabelStore.minmMaxRub.max
                     ? "max"
-                    : store.rub[index] === store.minmMaxRub.min
+                    : tabelStore.rub[index] === tabelStore.minmMaxRub.min
                     ? "min"
                     : ""
-                }">${store.rub[index]}</td>`
+                }">${tabelStore.rub[index]}</td>`
               : ""
           }
         </tr>

@@ -69,6 +69,11 @@ module.exports = ({ development }) => {
       path: path.resolve(__dirname, 'dist'),
       assetModuleFilename: '[file]',
     },
+    experiments: {
+      asyncWebAssembly: true,
+      syncWebAssembly: true,
+      topLevelAwait: true,
+    },
     target: ['web', 'es6'],
     module: {
       rules: [
