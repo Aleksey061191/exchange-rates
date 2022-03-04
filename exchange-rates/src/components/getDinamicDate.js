@@ -7,13 +7,17 @@ const joinDate = (year, month, day) => {
 };
 
 function getArrayDinamicDate(start, end) {
-  const startDate = start.split('-');
-  const endDate = end.split('-');
+  const startDate = start.split("-");
+  const endDate = end.split("-");
   let year = +startDate[0];
   let month = +startDate[1];
   let day = +startDate[2];
   const arr = [];
-  while (year >= +endDate[0] && month >= +endDate[1] && day >= +endDate[2]) {
+  while (
+    (day >= +endDate[2] || (month > +endDate[1] && day <= +endDate[2]) || (year > +endDate[0] && month <= +endDate[1] && day <= +endDate[2])) &&
+    (month >= +endDate[1] || (year > +endDate[0] && month <= +endDate[1])) &&
+    year >= +endDate[0]
+  ) {
     if (day === 1) {
       arr.push(joinDate(year, month, day));
       if (month === 1) {
@@ -30,7 +34,6 @@ function getArrayDinamicDate(start, end) {
   }
   return arr;
 }
-
 
 export const getDinamicRates = async (start, end) => {
   const currency = [431, 451, 456];
